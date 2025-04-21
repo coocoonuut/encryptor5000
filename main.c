@@ -101,6 +101,8 @@ void decrypting(const char* input) {
         char* decrypted = decrypt(input, key);
 
         printf("Key %d: %s\n", key, decrypted);
+
+        free(decrypted);
     }
 }
 
