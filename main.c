@@ -6,6 +6,7 @@
 
 # define NUMBER_LETTERS 26
 # define NULL_CHARACTER '\0'
+# define ENTER_CHARACTER '\n'
 # define TEXT_LENGTH 101
 
 char* caesar(const char* input, int key);
