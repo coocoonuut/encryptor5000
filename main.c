@@ -9,7 +9,7 @@
 # define ENTER_CHARACTER '\n'
 # define TEXT_LENGTH 101
 
-char* caesar(const char* input, int key);
+char* caesar(const char* input, int key, int isEncrypted);
 char* vigenere(const char* input, const char* key, int isEncrypted);
 void decrypting(const char* input);
 void scan(char* text, const char* caption, const char* errorCaption);
