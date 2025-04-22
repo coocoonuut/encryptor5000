@@ -108,6 +108,40 @@ void decrypting(const char* input) {
     }
 }
 
+void scan(char* text, const char* caption, const char* errorCaption) {
+    do {
+        printf(caption);
+
+        fflush(stdout);
+
+        fgets(text, TEXT_LENGTH, stdin);
+        /*
+         * Si la lectura de la linea de texto ingresado sobrepasa el numero maximo
+         * de caracteres a leer, (incluyendo el NULL_CHARACTER al final), fgets
+         * NO captura (o lee) el ENTER_CHARACTER y por lo cual queda en una
+         * memoria temporal (Input Buffer) pendiente en recuperar para que la
+         * siguiente llamada de fgets recupere la lectura pendiente.
+         */
+        // Si el texto no tiene ENTER_CHARACTER.
+        if (strchr(text, ENTER_CHARACTER) == NULL) {
+            /*
+             * Recuperamos el primer caracter `getchar()` de la
+             * memoria temporal y lo va remplazando con la
+             * variable `int ch` hasta llegar al ENTER_CHARACTER
+             * o EOF (final de un archivo).
+             */
+            int ch;
+            while ((ch = getchar()) != ENTER_CHARACTER && ch != EOF) {}
+
+            printf(errorCaption);
+        } else {
+            // `strcspn(text, ENTER_CHARACTER)`: recupera la posicion - 1 de ENTER_CHARACTER.
+            text[strcspn(text, "\n")] = '\0';
+            break;
+        }
+    } while (1);
+}
+
 int randomInt(int min, int max) {
     if (max < min) return 0;
     return rand() % (max - min + 1) + min;
