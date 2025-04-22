@@ -10,6 +10,7 @@
 # define TEXT_LENGTH 101
 
 char* caesar(const char* input, int key);
+char* vigenere(const char* input, const char* key, int isEncrypted);
 char* encrypt(const char* input, int key);
 char* decrypt(const char* input, int key);
 void decrypting(const char* input);
