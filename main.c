@@ -13,6 +13,7 @@ char* caesar(const char* input, int key);
 char* encrypt(const char* input, int key);
 char* decrypt(const char* input, int key);
 void decrypting(const char* input);
+void scan(char* text, const char* caption, const char* errorCaption);
 int randomInt(int min, int max);
 
 int main() {
