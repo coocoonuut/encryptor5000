@@ -91,6 +91,42 @@ char* caesar(const char* input, int key) {
     return output;
 }
 
+char* vigenere(const char* input, const char* key, int isEncrypted) {
+    const unsigned long long len = strlen(input);
+    char* output = (char*)malloc((len + 1) * sizeof(char));
+
+    if (output == NULL) {
+        return NULL;
+    }
+
+    int i = 0;
+    int j = 0;
+    while (input[i] != NULL_CHARACTER) {
+        char c = input[i];
+
+        if (isalpha(c)) {
+            char base = isupper(c) ? 'A' : 'a';
+            char k = toupper(key[j % strlen(key)]) - 'A';
+
+            if (isEncrypted) {
+                k = (char)-k;
+            }
+
+            output[i] = (c - base + k + NUMBER_LETTERS) % NUMBER_LETTERS + base;
+
+            j++; // solo avanzar clave si el char es letra
+        } else {
+            output[i] = c; // copiar tal cual si no es letra
+        }
+
+        i++;
+    }
+
+    output[len] = NULL_CHARACTER;
+
+    return output;
+}
+
 char* encrypt(const char* input, int key) {
     return caesar(input, key);
 }
