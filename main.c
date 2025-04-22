@@ -77,6 +77,10 @@ char* caesar(const char* input, int key, int isEncrypted) {
         if (isalpha(ch)) {
             char base = isupper(ch) ? 'A' : 'a';
 
+            if (isEncrypted) {
+                key = -key;
+            }
+
             output[i] = (ch - base + key + NUMBER_LETTERS) % NUMBER_LETTERS + base;
         } else {
             output[i] = ch;
