@@ -125,14 +125,6 @@ char* vigenere(const char* input, const char* key, int isEncrypted) {
     return output;
 }
 
-char* encrypt(const char* input, int key) {
-    return caesar(input, key);
-}
-
-char* decrypt(const char* input, int key) {
-    return caesar(input, -key);
-}
-
 void decrypting(const char* input) {
     for (int key = 1; key < NUMBER_LETTERS; key++) {
         char* decrypted = decrypt(input, key);
