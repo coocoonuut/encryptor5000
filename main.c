@@ -11,8 +11,6 @@
 
 char* caesar(const char* input, int key);
 char* vigenere(const char* input, const char* key, int isEncrypted);
-char* encrypt(const char* input, int key);
-char* decrypt(const char* input, int key);
 void decrypting(const char* input);
 void scan(char* text, const char* caption, const char* errorCaption);
 int randomInt(int min, int max);
