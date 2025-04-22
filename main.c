@@ -55,7 +55,7 @@ int main() {
     return 0;
 }
 
-char* caesar(const char* input, int key) {
+char* caesar(const char* input, int key, int isEncrypted) {
     int len = strlen(input);
     char* output = (char*)malloc((len + 1) * sizeof(char));
 
