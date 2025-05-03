@@ -1,0 +1,15 @@
+# Directorios de build de CLion
+cmake-build-*/
+
+# Archivos de configuración del IDE
+.idea/
+
+# Archivos de compilación
+*.o
+*.obj
+*.exe
+*.out
+
+# Archivos de caché de CMake
+CMakeCache.txt
+CMakeFiles/
