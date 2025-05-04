@@ -1,5 +1,6 @@
 # Directorios de build de CLion
 cmake-build-*/
+build/
 
 # Archivos de configuración del IDE
 .idea/
