@@ -30,7 +30,7 @@ int main(void) {
         char plaintext[MAX_LEN];
         char result[MAX_LEN];
 
-        menu_option = displayMenu();
+        menu_option = display_menu();
 
         switch (menu_option) {
             case 1: // Cifrar con Cesar
@@ -41,7 +41,7 @@ int main(void) {
 
                 process_string(plaintext);
 
-                caesar_key = randomInt(1, ALPHABET_SIZE - 1);
+                caesar_key = random_int(1, ALPHABET_SIZE - 1);
 
                 caesar(plaintext, result, caesar_key);
 
@@ -79,8 +79,8 @@ int main(void) {
 
                 process_string(plaintext);
 
-                comprime26 = comprimeNumbers[randomInt(NUM_COPRIMES - NUM_COPRIMES, NUM_COPRIMES - 1)];
-                int displacement = randomInt(ALPHABET_SIZE - (ALPHABET_SIZE - 1), ALPHABET_SIZE - 1);
+                comprime26 = comprime_numbers[random_int(NUM_COPRIMES - NUM_COPRIMES, NUM_COPRIMES - 1)];
+                int displacement = random_int(ALPHABET_SIZE - (ALPHABET_SIZE - 1), ALPHABET_SIZE - 1);
 
                 affine(plaintext, result, comprime26, displacement, 0);
 
@@ -146,30 +146,30 @@ int main(void) {
 
                 process_string(plaintext);
 
-                int decryptA, decryptB;
-                char inputDecryptA[INPUT_BUFFER_SIZE], inputDecryptB[INPUT_BUFFER_SIZE];
+                int decrypt_a, decrypt_b;
+                char input_decrypt_a[INPUT_BUFFER_SIZE], input_decrypt_b[INPUT_BUFFER_SIZE];
 
-                if (!scan("Introduzca el valor de 'a' (debe ser coprimo con 26):", inputDecryptA, INPUT_BUFFER_SIZE)) {
+                if (!scan("Introduzca el valor de 'a' (debe ser coprimo con 26):", input_decrypt_a, INPUT_BUFFER_SIZE)) {
                     pause();
                     continue;
                 }
 
-                if (!parse_integer(inputDecryptA, &decryptA)) {
+                if (!parse_integer(input_decrypt_a, &decrypt_a)) {
                     pause();
                     continue;
                 }
 
-                if (!scan("Introduzca el valor de 'b' (desplazamiento):", inputDecryptB, INPUT_BUFFER_SIZE)) {
+                if (!scan("Introduzca el valor de 'b' (desplazamiento):", input_decrypt_b, INPUT_BUFFER_SIZE)) {
                     pause();
                     continue;
                 }
 
-                if (!parse_integer(inputDecryptB,  &decryptB)) {
+                if (!parse_integer(input_decrypt_b,  &decrypt_b)) {
                     pause();
                     continue;
                 }
 
-                if (!affine(plaintext, result, decryptA, decryptB, 1)) {
+                if (!affine(plaintext, result, decrypt_a, decrypt_b, 1)) {
                     pause();
                     continue;
                 }
@@ -208,15 +208,15 @@ int main(void) {
 
                 process_string(plaintext);
 
-                int keylength = estimateKeyLen(plaintext);
+                int key_length = estimate_key_len(plaintext);
 
-                printf("Longitud estimada de la llave: %d\n", keylength);
+                printf("Longitud estimada de la llave: %d\n", key_length);
 
-                estimateKey(vigenere_key, keylength, plaintext);
+                estimate_key(vigenere_key, key_length, plaintext);
 
                 printf("Llave estimada: %s\n", vigenere_key);
 
-                vigenere(plaintext, result,vigenere_key, 1);
+                vigenere(plaintext, result, vigenere_key, 1);
 
                 printf("Texto descifrado: %s\n", result);
 
@@ -230,41 +230,41 @@ int main(void) {
 
                 process_string(plaintext);
 
-                double bestScore = -1.0;
-                int foundShift = 0;
-                int foundComprimeOf26 = 1;
+                double best_score = -1.0;
+                int found_shift = 0;
+                int found_comprime_of26 = 1;
 
                 // Probar cada combinación de "a" y "b"
                 for (int i = 0; i < 12; i++) {
-                    comprime26 = comprimeNumbers[i];
+                    comprime26 = comprime_numbers[i];
 
                     for (int shift = 0; shift <= ALPHABET_SIZE - 1; shift++) {
-                        char tempText[MAX_LEN];
+                        char temp_text[MAX_LEN];
 
-                        affine(plaintext, tempText, comprime26, shift, 1);  // Descifrar
+                        affine(plaintext, temp_text, comprime26, shift, 1);  // Descifrar
 
                         // Calcular las frecuencias del texto descifrado
                         int freqs[ALPHABET_SIZE], total;
 
-                        computeFrequencies(tempText, strlen(tempText), freqs, &total);
+                        compute_frequencies(temp_text, strlen(temp_text), freqs, &total);
 
                         // Calcular la correlación de frecuencias directamente
                         double score = 0.0;
                         for (int j = 0; j < ALPHABET_SIZE; j++) {
-                            score += freqs[j] * spanishFrequencies[j];
+                            score += freqs[j] * spanish_frequencies[j];
                         }
 
                         // Si encontramos una mejor correlación, actualizamos
-                        if (score > bestScore) {
-                            bestScore = score;
-                            foundComprimeOf26 = comprime26;
-                            foundShift = shift;
-                            strcpy(result, tempText);
+                        if (score > best_score) {
+                            best_score = score;
+                            found_comprime_of26 = comprime26;
+                            found_shift = shift;
+                            strcpy(result, temp_text);
                         }
                     }
                 }
 
-                printf("Claves encontradas: a = %d, b = %d\n", foundComprimeOf26, foundShift);
+                printf("Claves encontradas: a = %d, b = %d\n", found_comprime_of26, found_shift);
                 printf("Texto descifrado: %s\n", result);
 
                 pause();

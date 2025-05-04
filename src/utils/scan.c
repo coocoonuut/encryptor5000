@@ -18,7 +18,7 @@ int scan(const char* prompt, char* buffer, int size) {
 
     // Si no hay salto de línea, el buffer se desbordó
     if (strchr(buffer, '\n') == NULL) {
-        cleanBuffer();
+        clean_buffer();
     } else {
         // Elimina el salto de línea
         buffer[strcspn(buffer, "\n")] = '\0';

@@ -1,7 +1,7 @@
 #include "constants.h"
 #include "statistics/index_coincidence.h"
 
-float indexCoincidence(const char *text, int len) {
+float index_coincidence(const char *text, int len) {
     float freq[ALPHABET_SIZE] = {0};
     for (int i = 0; i < len; i++) {
         freq[text[i] - 'A']++;

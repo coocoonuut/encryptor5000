@@ -4,7 +4,7 @@
 #include "constants.h"
 #include "statistics/compute_frequencies.h"
 
-void computeFrequencies(const char* text, unsigned long length, int* freqs, int* total) {
+void compute_frequencies(const char* text, unsigned long length, int* freqs, int* total) {
     *total = 0;
     memset(freqs, 0, sizeof(int) * ALPHABET_SIZE);
 

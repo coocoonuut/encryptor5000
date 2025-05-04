@@ -9,8 +9,8 @@
  * @param plaintext Puntero al texto de entrada
  * @param result Puntero que devuelve el plaintext cifrado/descifrado
  * @param key Puntero a la clave de cifrado
- * @param isEncrypted 1 si se está descifrando, 0 si se está cifrando
+ * @param is_encrypted 1 si se está descifrando, 0 si se está cifrando
  */
-void vigenere(const char* plaintext, char* result, const char* key, int isEncrypted);
+void vigenere(const char* plaintext, char* result, const char* key, int is_encrypted);
 
 #endif //VIGENERE_H

@@ -1,8 +1,8 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-extern const double spanishFrequencies[];
-extern const double englishFrequencies[];
-extern const int comprimeNumbers[];
+extern const double spanish_frequencies[];
+extern const double english_frequencies[];
+extern const int comprime_numbers[];
 
 #endif //GLOBALS_H

@@ -10,11 +10,11 @@
 
 #include "display_menu.h"
 
-int displayMenu(void) {
+int display_menu(void) {
     while (1) {
         char option_string[INPUT_BUFFER_SIZE];
 
-        cleanConsole();
+        clean_console();
 
         printf("|======================================|\n");
         printf("|    BIENVENID@ AL ENCRIPTADOR 5000    |\n");
@@ -43,7 +43,7 @@ int displayMenu(void) {
             continue;
         }
 
-        if (!isValidOption(option)) {
+        if (!is_valid_option(option)) {
             printf(MSG_INVALID_NUMBER);
             pause();
             continue;

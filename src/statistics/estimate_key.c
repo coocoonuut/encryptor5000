@@ -5,7 +5,7 @@
 #include "statistics/estimate_key.h"
 #include "statistics/compute_frequencies.h"
 
-void estimateKey(char* ptr_key, int key_length, const char* ptr_cipher) {
+void estimate_key(char* ptr_key, int key_length, const char* ptr_cipher) {
     for (int i = 0; i <= key_length - 1; i++) {
         char substring[MAX_LEN];
         int substring_len = 0;
@@ -18,7 +18,7 @@ void estimateKey(char* ptr_key, int key_length, const char* ptr_cipher) {
 
         // Calcular las frecuencias del segmento
         int freqs[ALPHABET_SIZE], total;
-        computeFrequencies(substring, strlen(substring), freqs, &total);
+        compute_frequencies(substring, strlen(substring), freqs, &total);
 
         // Calcular la correlación de frecuencias directamente dentro de estimateKey
         double best_score = -1.0;
@@ -28,7 +28,7 @@ void estimateKey(char* ptr_key, int key_length, const char* ptr_cipher) {
 
             // Calcular la correlación entre las frecuencias observadas y las frecuencias del español
             for (int j = 0; j <= ALPHABET_SIZE - 1; j++) {
-                score += freqs[(j + shift) % ALPHABET_SIZE] * spanishFrequencies[j];
+                score += freqs[(j + shift) % ALPHABET_SIZE] * spanish_frequencies[j];
             }
 
             // Si encontramos un mejor score, actualizamos el mejor desplazamiento

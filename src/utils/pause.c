@@ -7,7 +7,7 @@ void pause(void) {
     printf("\nPRESIONE <ENTER> PARA CONTINUAR...");
     fflush(stdout);
 
-    cleanBuffer();
+    clean_buffer();
 
     getchar();
 }

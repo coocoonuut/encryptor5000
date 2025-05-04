@@ -5,7 +5,7 @@
 #include "statistics/index_coincidence.h"
 #include "statistics/estimate_key_len.h"
 
-int estimateKeyLen(const char* ptr_cipher) {
+int estimate_key_len(const char* ptr_cipher) {
     double best_diff = 100.0;
     int best_key_length = 1;
 
@@ -21,7 +21,7 @@ int estimateKeyLen(const char* ptr_cipher) {
             }
             substring[substring_len] = NULL_CHARACTER;
 
-            match_rate += indexCoincidence(substring, substring_len);
+            match_rate += index_coincidence(substring, substring_len);
         }
 
         match_rate /= (float) key_length;

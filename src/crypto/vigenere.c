@@ -3,7 +3,7 @@
 
 #include "crypto/vigenere.h"
 
-void vigenere(const char* plaintext, char* result, const char* key, int isEncrypted) {
+void vigenere(const char* plaintext, char* result, const char* key, int is_encrypted) {
     int keyLen = (int)strlen(key);
 
     for (int i = 0, j = 0; plaintext[i] != NULL_CHARACTER; i++) {
@@ -12,7 +12,7 @@ void vigenere(const char* plaintext, char* result, const char* key, int isEncryp
         if (isalpha(c)) {
             int keyShift = toupper(key[j % keyLen]) - 'A';
 
-            if (isEncrypted) {
+            if (is_encrypted) {
                 result[i] = (char)((c - 'A' - keyShift + ALPHABET_SIZE) % ALPHABET_SIZE + 'A');
             } else {
                 result[i] = (char)((c - 'A' + keyShift) % ALPHABET_SIZE + 'A');

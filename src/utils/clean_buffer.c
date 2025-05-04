@@ -2,7 +2,7 @@
 
 #include "utils/clean_buffer.h"
 
-void cleanBuffer(void) {
+void clean_buffer(void) {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 }
