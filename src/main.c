@@ -1,8 +1,5 @@
-#include <ctype.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <time.h>
 
 #include "constants.h"
 #include "globals.h"
@@ -24,8 +21,6 @@
 #include "utils/scan.h"
 
 int main(void) {
-    srand(time(NULL));
-
     int menu_option;
 
     do {
