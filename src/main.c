@@ -79,8 +79,8 @@ int main(void) {
 
                 process_string(plaintext);
 
-                comprime26 = comprimeNumbers[randomInt(0, 11)];
-                int displacement = randomInt(1, ALPHABET_SIZE - 1);
+                comprime26 = comprimeNumbers[randomInt(NUM_COPRIMES - NUM_COPRIMES, NUM_COPRIMES - 1)];
+                int displacement = randomInt(ALPHABET_SIZE - (ALPHABET_SIZE - 1), ALPHABET_SIZE - 1);
 
                 affine(plaintext, result, comprime26, displacement, 0);
 
