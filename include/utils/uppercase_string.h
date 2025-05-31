@@ -1,6 +1,6 @@
-#ifndef PROCESS_STRING_H
-#define PROCESS_STRING_H
+#ifndef UPPERCASE_STRING_H
+#define UPPERCASE_STRING_H
 
 void process_string(char* string);
 
-#endif //PROCESS_STRING_H
+#endif // UPPERCASE_STRING_H
