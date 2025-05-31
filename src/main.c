@@ -16,7 +16,7 @@
 
 #include "utils/parse_integer.h"
 #include "utils/pause.h"
-#include "utils/process_string.h"
+#include "utils/uppercase_string.h"
 #include "utils/random_int.h"
 #include "utils/scan.h"
 
