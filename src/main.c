@@ -39,7 +39,7 @@ int main(void) {
                     continue;
                 }
 
-                process_string(plaintext);
+                uppercase_string(plaintext);
 
                 caesar_key = random_int(1, ALPHABET_SIZE - 1);
 
@@ -56,14 +56,14 @@ int main(void) {
                     continue;
                 }
 
-                process_string(plaintext);
+                uppercase_string(plaintext);
 
                 if (!scan("Escriba una llave <MAYUSCULA SIN ESPACIOS>:", vigenere_key, MAX_LEN)) {
                     pause();
                     continue;
                 }
 
-                process_string(vigenere_key);
+                uppercase_string(vigenere_key);
 
                 vigenere(plaintext, result, vigenere_key, 1);
 
@@ -77,7 +77,7 @@ int main(void) {
                     continue;
                 }
 
-                process_string(plaintext);
+                uppercase_string(plaintext);
 
                 comprime26 = comprime_numbers[random_int(NUM_COPRIMES - NUM_COPRIMES, NUM_COPRIMES - 1)];
                 int displacement = random_int(ALPHABET_SIZE - (ALPHABET_SIZE - 1), ALPHABET_SIZE - 1);
@@ -97,7 +97,7 @@ int main(void) {
                     continue;
                 }
 
-                process_string(plaintext);
+                uppercase_string(plaintext);
 
                 char input_key[INPUT_BUFFER_SIZE];
 
@@ -123,14 +123,14 @@ int main(void) {
                     continue;
                 }
 
-                process_string(plaintext);
+                uppercase_string(plaintext);
 
                 if (!scan("Escriba la llave <MAYUSCULAS SIN ESPACIOS>:", vigenere_key, MAX_LEN)) {
                     pause();
                     continue;
                 }
 
-                process_string(vigenere_key);
+                uppercase_string(vigenere_key);
 
                 vigenere(plaintext, result, vigenere_key, 1);
 
@@ -144,7 +144,7 @@ int main(void) {
                     continue;
                 }
 
-                process_string(plaintext);
+                uppercase_string(plaintext);
 
                 int decrypt_a, decrypt_b;
                 char input_decrypt_a[INPUT_BUFFER_SIZE], input_decrypt_b[INPUT_BUFFER_SIZE];
@@ -184,7 +184,7 @@ int main(void) {
                     continue;
                 }
 
-                process_string(plaintext);
+                uppercase_string(plaintext);
 
                 int counter = 0;
                 for (caesar_key = 1; caesar_key < ALPHABET_SIZE; caesar_key++) {
@@ -206,7 +206,7 @@ int main(void) {
                     continue;
                 }
 
-                process_string(plaintext);
+                uppercase_string(plaintext);
 
                 int key_length = estimate_key_len(plaintext);
 
@@ -228,7 +228,7 @@ int main(void) {
                     continue;
                 }
 
-                process_string(plaintext);
+                uppercase_string(plaintext);
 
                 double best_score = -1.0;
                 int found_shift = 0;
