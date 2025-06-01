@@ -9,7 +9,7 @@ void vigenere_encrypt(const char* text, char* encrypted_text, char* key) {
         char c = text[i];
 
         if (isalpha(c)) {
-            encrypted_text[i] = (char)((c - 'A' - (key[j % strlen(key)] - 'A')) % ALPHABET_SIZE + 'A');
+            encrypted_text[i] = (char)((c - 'A' + (key[j % strlen(key)] - 'A')) % ALPHABET_SIZE + 'A');
             j++;
         } else {
             encrypted_text[i] = c;

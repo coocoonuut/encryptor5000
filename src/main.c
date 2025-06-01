@@ -6,7 +6,8 @@
 
 #include "crypto/caesar.h"
 #include "crypto/affine.h"
-#include "crypto/vigenere.h"
+#include "crypto/vigenere_encrypt.h"
+#include "crypto/vigenere_decrypt.h"
 
 #include "statistics/compute_frequencies.h"
 #include "statistics/estimate_key.h"
@@ -65,7 +66,7 @@ int main(void) {
 
                 uppercase_string(vigenere_key);
 
-                vigenere(plaintext, result, vigenere_key, 1);
+                vigenere_encrypt(plaintext, result, vigenere_key);
 
                 printf("Texto cifrado: %s\n", result);
 
@@ -132,7 +133,7 @@ int main(void) {
 
                 uppercase_string(vigenere_key);
 
-                vigenere(plaintext, result, vigenere_key, 1);
+                vigenere_decrypt(plaintext, result, vigenere_key);
 
                 printf("Texto descifrado: %s\n", result);
 
@@ -216,7 +217,7 @@ int main(void) {
 
                 printf("Llave estimada: %s\n", vigenere_key);
 
-                vigenere(plaintext, result, vigenere_key, 1);
+                vigenere_decrypt(plaintext, result, vigenere_key);
 
                 printf("Texto descifrado: %s\n", result);
 
