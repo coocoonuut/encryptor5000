@@ -5,7 +5,8 @@
 #include "globals.h"
 
 #include "crypto/caesar.h"
-#include "crypto/affine.h"
+#include "crypto/affine_decrypt.h"
+#include "crypto/affine_encrypt.h"
 #include "crypto/vigenere_encrypt.h"
 #include "crypto/vigenere_decrypt.h"
 
@@ -83,7 +84,7 @@ int main(void) {
                 comprime26 = comprime_numbers[random_int(NUM_COPRIMES - NUM_COPRIMES, NUM_COPRIMES - 1)];
                 int displacement = random_int(ALPHABET_SIZE - (ALPHABET_SIZE - 1), ALPHABET_SIZE - 1);
 
-                affine(plaintext, result, comprime26, displacement, 0);
+                affine_encrypt(plaintext, comprime26, displacement, result);
 
                 printf("Coprimo de 26: %d\n", comprime26);
                 printf("Desplazamiento: %d\n", displacement);
@@ -170,10 +171,7 @@ int main(void) {
                     continue;
                 }
 
-                if (!affine(plaintext, result, decrypt_a, decrypt_b, 1)) {
-                    pause();
-                    continue;
-                }
+                affine_decrypt(plaintext, decrypt_a, decrypt_b, result);
 
                 printf("Texto descifrado: %s\n", result);
 
@@ -242,7 +240,7 @@ int main(void) {
                     for (int shift = 0; shift <= ALPHABET_SIZE - 1; shift++) {
                         char temp_text[MAX_LEN];
 
-                        affine(plaintext, temp_text, comprime26, shift, 1);  // Descifrar
+                        affine_decrypt(plaintext, comprime26, shift, temp_text);
 
                         // Calcular las frecuencias del texto descifrado
                         int freqs[ALPHABET_SIZE], total;
