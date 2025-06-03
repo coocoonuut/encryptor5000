@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 
 #include "constants.h"
 #include "globals.h"
@@ -10,7 +9,6 @@
 #include "crypto/vigenere_encrypt.h"
 #include "crypto/vigenere_decrypt.h"
 
-#include "statistics/compute_frequencies.h"
 #include "statistics/estimate_key.h"
 #include "statistics/estimate_key_len.h"
 
@@ -28,6 +26,7 @@ int main(void) {
     do {
         int caesar_key = 0;
         int comprime26 = 0;
+        int displacement = 0;
         char vigenere_key[MAX_KEY_LENGTH];
         char plaintext[MAX_LEN];
         char result[MAX_LEN];
@@ -81,8 +80,8 @@ int main(void) {
 
                 uppercase_string(plaintext);
 
-                comprime26 = comprime_numbers[random_int(NUM_COPRIMES - NUM_COPRIMES, NUM_COPRIMES - 1)];
-                int displacement = random_int(ALPHABET_SIZE - (ALPHABET_SIZE - 1), ALPHABET_SIZE - 1);
+                comprime26 = coprime_numbers[random_int(NUM_COPRIMES - NUM_COPRIMES, NUM_COPRIMES - 1)];
+                displacement = random_int(ALPHABET_SIZE - (ALPHABET_SIZE - 1), ALPHABET_SIZE - 1);
 
                 affine_encrypt(plaintext, comprime26, displacement, result);
 
@@ -229,44 +228,42 @@ int main(void) {
 
                 uppercase_string(plaintext);
 
-                double best_score = -1.0;
-                int found_shift = 0;
-                int found_comprime_of26 = 1;
+                // Exhaustive Search
+                int count = 0;
+                for (int i = 0; i < NUM_COPRIMES; i++) {
+                    int coprime26_number = coprime_numbers[i];
 
-                // Probar cada combinación de "a" y "b"
-                for (int i = 0; i < 12; i++) {
-                    comprime26 = comprime_numbers[i];
+                    for (displacement = 0; displacement < ALPHABET_SIZE; displacement++) {
+                        count++;
 
-                    for (int shift = 0; shift <= ALPHABET_SIZE - 1; shift++) {
-                        char temp_text[MAX_LEN];
+                        affine_decrypt(plaintext, coprime26_number, displacement, result);
 
-                        affine_decrypt(plaintext, comprime26, shift, temp_text);
+                        printf("Clave (%d,%2d):\n", coprime26_number, displacement);
+                        printf("%s\n\n", result);
 
-                        // Calcular las frecuencias del texto descifrado
-                        int freqs[ALPHABET_SIZE], total;
-
-                        compute_frequencies(temp_text, strlen(temp_text), freqs, &total);
-
-                        // Calcular la correlación de frecuencias directamente
-                        double score = 0.0;
-                        for (int j = 0; j < ALPHABET_SIZE; j++) {
-                            score += freqs[j] * spanish_frequencies[j];
+                        if (count % ALPHABET_SIZE == 0) {
+                           pause();
                         }
+                    }
 
-                        // Si encontramos una mejor correlación, actualizamos
-                        if (score > best_score) {
-                            best_score = score;
-                            found_comprime_of26 = comprime26;
-                            found_shift = shift;
-                            strcpy(result, temp_text);
-                        }
+                    char char_option[INPUT_BUFFER_SIZE];
+                    if (!scan("¿Encontro el texto decifrado? Si[1] o No[0]:", char_option, INPUT_BUFFER_SIZE)) {
+                        pause();
+                        break;
+                    }
+
+                    int int_option;
+                    if (!parse_integer(char_option, &int_option)) {
+                        pause();
+                        break;
+                    }
+
+                    if (int_option == 1) {
+                        pause();
+                        break;
                     }
                 }
 
-                printf("Claves encontradas: a = %d, b = %d\n", found_comprime_of26, found_shift);
-                printf("Texto descifrado: %s\n", result);
-
-                pause();
                 break;
             default:
                 break;
