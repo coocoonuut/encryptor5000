@@ -3,6 +3,6 @@
 
 extern const double spanish_frequencies[];
 extern const double english_frequencies[];
-extern const int comprime_numbers[];
+extern const int coprime_numbers[];
 
 #endif //GLOBALS_H
