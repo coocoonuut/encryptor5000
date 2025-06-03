@@ -15,5 +15,5 @@ void affine_encrypt(const char* text, int coprimeOf26, int displacement, char* e
         }
     }
 
-    encrypted_text[strlen(encrypted_text)] = NULL_CHARACTER;
+    encrypted_text[strlen(text)] = NULL_CHARACTER;
 }
